@@ -1,0 +1,5 @@
+date: 2026-10-17T16:01:18Z
+host: Apple M5 Pro, 15 cpus
+backend: nova-snark 0.73.0 instrumentado (vendor/nova-snark-0.73.0-prof)
+reps: 10  timed folds: 8  steps_per_fold: 1 4 16 64 256 1024  seed: 6
+e3423a52664c834c94491c67fcf5a824b37b29b9586542c1e8f512e4a3473ac2  results/profile-20261017/bin/spf-profile

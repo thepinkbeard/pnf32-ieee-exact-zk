@@ -1,0 +1,31 @@
+{"decode_encode_mismatches":0,"inputs":4294967296,"one_minus_x_mismatches":0,"oracle":"pnf-reference (arredondamento exato) vs f32 nativo (aarch64)","r":3.9000000953674316,"seconds":587.061864125,"x_times_r_mismatches":0}
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test add_mini8 ... ignored
+test decision_mini8 ... ok
+test mul_mini6 ... ok
+test add_mini6 ... ok
+test mul_mini8 ... ok
+test result: ok. 4 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 23.11s
+test field_repr_is_little_endian ... ok
+test test_constraint_system_agrees_with_check_cs ... ok
+test logistic_steps_match_native_f32 ... ok
+test hard_cases ... ok
+test tampered_witnesses_are_rejected ... ok
+test near_path_cancellation has been running for over 60 seconds
+test random_binary32_pairs has been running for over 60 seconds
+test near_path_cancellation ... ok
+test random_binary32_pairs ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 100.66s
+test tests::binary32_constants ... ok
+test tests::mini_roundtrip_exhaustive ... ok
+test tests::softfloat_crate_subnormal_counterexample ... ok
+test tests::hard_cases ... ok
+test tests::logistic_trajectory_matches_native ... ok
+test tests::bits_roundtrip_sampled ... ok
+test tests::oracle_matches_native ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.26s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

@@ -1,0 +1,31 @@
+{
+  "N": 26,
+  "format": "binary32",
+  "r": 3.9000000953674316,
+  "result": {
+    "adversarial": {
+      "dist0": 3.739185316931071e-8,
+      "eps": 1.490203018761349e-7,
+      "final_decision": true,
+      "shadowed": true,
+      "true_orbit_final_side_right": true,
+      "true_x0_interval": [
+        0.10000003888196218,
+        0.10000003888196929
+      ]
+    },
+    "honest_ieee": {
+      "dist0": 1.074277022894421e-8,
+      "eps": 1.0050979071252186e-7,
+      "final_decision": false,
+      "shadowed": true,
+      "true_orbit_final_side_right": false,
+      "true_x0_interval": [
+        0.09999999074734589,
+        0.099999990747353
+      ]
+    }
+  },
+  "witness": "../rounding-steering-attack/results/campaign-20261016/witness_f32_d24_r3.9.json",
+  "x0": 0.10000000149011612
+}

@@ -1,0 +1,19 @@
+[package]
+name = "spf-baselines"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Baselines FP32 restrito e CBD-32 de proof-numeric-zk com vários passos por fold"
+
+[dependencies]
+anyhow.workspace = true
+bincode.workspace = true
+clap.workspace = true
+ff.workspace = true
+nova-snark.workspace = true
+# Gadgets reutilizados sem cópia; proof-numeric-zk nunca é modificado.
+nova-circuit = { path = "../../../proof-numeric-zk/crates/nova-circuit" }
+num-rational = "0.4.2"
+serde_json.workspace = true
+libc = "0.2"

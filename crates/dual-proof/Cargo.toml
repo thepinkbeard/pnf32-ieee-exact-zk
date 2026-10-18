@@ -1,0 +1,27 @@
+[package]
+name = "dual-proof"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+bincode.workspace = true
+clap.workspace = true
+ff.workspace = true
+libc = "0.2"
+nova-snark.workspace = true
+num-bigint.workspace = true
+num-rational = "0.4.2"
+num-traits.workspace = true
+serde_json.workspace = true
+pnf-circuit = { path = "../pnf-circuit" }
+pnf-reference = { path = "../pnf-reference" }
+# CBD/CDAD do projeto irmão: dependência por caminho, nunca modificado aqui.
+nova-circuit = { path = "../../../proof-numeric-zk/crates/nova-circuit" }
+numeric-reference = { path = "../../../proof-numeric-zk/crates/numeric-reference" }
+
+[[bin]]
+name = "dual-bench"
+path = "src/main.rs"

@@ -1,0 +1,23 @@
+[package]
+name = "shadow-proof"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+bincode.workspace = true
+clap.workspace = true
+ff.workspace = true
+libc = "0.2"
+nova-snark.workspace = true
+num-bigint.workspace = true
+num-traits.workspace = true
+serde_json.workspace = true
+pnf-circuit = { path = "../pnf-circuit" }
+pnf-reference = { path = "../pnf-reference" }
+
+[[bin]]
+name = "shadow-bench"
+path = "src/main.rs"

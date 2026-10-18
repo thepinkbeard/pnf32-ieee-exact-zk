@@ -1,0 +1,78 @@
+{
+  "note": "breakdown medido com CheckCS; a forma depende de r (larguras de range check), não de x0",
+  "r_f32": 3.9000000953674316,
+  "r_f32_exact": "8178893/2097152",
+  "radius_bound": "LocalTaylor",
+  "rows": [
+    {
+      "cbd_r_den": 2097152,
+      "cbd_r_mode": "same_input_fl_r",
+      "cbd_r_num": 8178893,
+      "cbd_standalone_step": 847,
+      "fractional_bits": 32,
+      "k": 2,
+      "overhead_vs_sum_of_parts": 6,
+      "per_fold": {
+        "cbd": 847,
+        "combination": 6,
+        "pnf32": 415,
+        "total": 1268
+      },
+      "pnf32_standalone_step": 415,
+      "state_field_elements": 14
+    },
+    {
+      "cbd_r_den": 2097152,
+      "cbd_r_mode": "same_input_fl_r",
+      "cbd_r_num": 8178893,
+      "cbd_standalone_step": 1431,
+      "fractional_bits": 64,
+      "k": 4,
+      "overhead_vs_sum_of_parts": 6,
+      "per_fold": {
+        "cbd": 1431,
+        "combination": 6,
+        "pnf32": 415,
+        "total": 1852
+      },
+      "pnf32_standalone_step": 415,
+      "state_field_elements": 16
+    },
+    {
+      "cbd_r_den": 10,
+      "cbd_r_mode": "model_r_39_10",
+      "cbd_r_num": 39,
+      "cbd_standalone_step": 709,
+      "fractional_bits": 32,
+      "k": 2,
+      "overhead_vs_sum_of_parts": 6,
+      "per_fold": {
+        "cbd": 709,
+        "combination": 6,
+        "pnf32": 415,
+        "total": 1130
+      },
+      "pnf32_standalone_step": 415,
+      "state_field_elements": 14
+    },
+    {
+      "cbd_r_den": 10,
+      "cbd_r_mode": "model_r_39_10",
+      "cbd_r_num": 39,
+      "cbd_standalone_step": 1293,
+      "fractional_bits": 64,
+      "k": 4,
+      "overhead_vs_sum_of_parts": 6,
+      "per_fold": {
+        "cbd": 1293,
+        "combination": 6,
+        "pnf32": 415,
+        "total": 1714
+      },
+      "pnf32_standalone_step": 415,
+      "state_field_elements": 16
+    }
+  ],
+  "threshold": 0.5,
+  "workload": "logistic-map"
+}

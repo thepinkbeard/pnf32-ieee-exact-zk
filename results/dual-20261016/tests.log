@@ -1,0 +1,154 @@
+   Compiling pnf-circuit v0.1.0 (/Users/barbosa/PhD/pnf32-ieee-exact-zk/crates/pnf-circuit)
+   Compiling pnf-bench v0.1.0 (/Users/barbosa/PhD/pnf32-ieee-exact-zk/crates/pnf-bench)
+   Compiling dual-proof v0.1.0 (/Users/barbosa/PhD/pnf32-ieee-exact-zk/crates/dual-proof)
+    Finished `release` profile [optimized + debuginfo] target(s) in 11.12s
+     Running unittests src/lib.rs (target/release/deps/berkeley_validation-d5807b30884c4e8e)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/release/deps/dual_proof-fa73437f77ed7125)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/release/deps/dual_bench-1bcfc704b247d470)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/dual.rs (target/release/deps/dual-5634304cb4982311)
+
+running 11 tests
+test r_and_x0_are_the_same_numbers_in_both_parts ... ok
+test z0_check_rejects_inconsistent_initial_state ... ok
+test test_constraint_system_agrees ... ok
+test breakdown_adds_up ... ok
+test combination_is_unique_and_correct ... ok
+test model_variant_encloses_decimal_r_trajectory ... ok
+test ieee_output_is_bit_exact_k2 ... ok
+test ieee_output_is_bit_exact_k4 ... ok
+test nova_proves_dual_trajectory ... ok
+test enclosure_contains_exact_rational_trajectory ... ok
+test enclosure_contains_directed_reference_long_horizon ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 10.25s
+
+     Running unittests src/main.rs (target/release/deps/pnf_bench-7ee5d053671d7736)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/release/deps/pnf_circuit-2994ccd0ccd8fecc)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/exhaustive_uniqueness.rs (target/release/deps/exhaustive_uniqueness-0150f4bb35c1984d)
+
+running 5 tests
+test add_mini8 ... ignored
+test decision_mini8 ... ok
+test mul_mini6 ... ok
+test add_mini6 ... ok
+test mul_mini8 ... ok
+
+test result: ok. 4 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 35.67s
+
+     Running tests/ops_binary32.rs (target/release/deps/ops_binary32-e6a14185b1c6b7fd)
+
+running 7 tests
+test field_repr_is_little_endian ... ok
+test test_constraint_system_agrees_with_check_cs ... ok
+test logistic_steps_match_native_f32 ... ok
+test hard_cases ... ok
+test near_path_cancellation has been running for over 60 seconds
+test random_binary32_pairs has been running for over 60 seconds
+test tampered_witnesses_are_rejected has been running for over 60 seconds
+test tampered_witnesses_are_rejected ... ok
+test near_path_cancellation ... ok
+test random_binary32_pairs ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 155.02s
+
+     Running tests/steps_per_fold.rs (target/release/deps/steps_per_fold-84b1f8886f08c30b)
+
+running 5 tests
+test test_constraint_system_agrees ... ok
+test constraints_are_linear_in_steps_per_fold ... ok
+test final_state_matches_native_f32 ... ok
+test chained_fold_equals_separate_folds ... ok
+test nova_chained_matches_unchained ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 6.92s
+
+     Running unittests src/lib.rs (target/release/deps/pnf_reference-be0a1dd2b6cdfef3)
+
+running 7 tests
+test tests::binary32_constants ... ok
+test tests::softfloat_crate_subnormal_counterexample ... ok
+test tests::mini_roundtrip_exhaustive ... ok
+test tests::hard_cases ... ok
+test tests::logistic_trajectory_matches_native ... ok
+test tests::bits_roundtrip_sampled ... ok
+test tests::oracle_matches_native ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.76s
+
+     Running unittests src/lib.rs (target/release/deps/spf_baselines-855d990cbeab0a38)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/release/deps/spf_baselines-93218ce06ae16201)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/chaining.rs (target/release/deps/chaining-d3bf6be29c84fff3)
+
+running 3 tests
+test cbd32_chained_equals_separate ... ok
+test fp32_chained_equals_separate ... ok
+test nova_chained_matches_unchained ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 7.26s
+
+   Doc-tests berkeley_validation
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests dual_proof
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests pnf_circuit
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests pnf_reference
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests spf_baselines
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+exit 0

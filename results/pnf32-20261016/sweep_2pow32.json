@@ -1,0 +1,9 @@
+{
+  "decode_encode_mismatches": 0,
+  "inputs": 4294967296,
+  "one_minus_x_mismatches": 0,
+  "oracle": "pnf-reference (arredondamento exato) vs f32 nativo (aarch64)",
+  "r": 3.9000000953674316,
+  "seconds": 587.061864125,
+  "x_times_r_mismatches": 0
+}

@@ -1,0 +1,45 @@
+{
+  "backend": "nova-snark 0.73.0, Pallas/Vesta, IPA",
+  "folds": 9,
+  "peak_rss_bytes": 1880047616,
+  "r": 3.700000047683716,
+  "r_variable": false,
+  "raw_fold_constraints": 423937,
+  "raw_step_constraints": 415,
+  "representation": "pnf32",
+  "runs": [
+    {
+      "compressed": {
+        "compressed_proof_bytes_bincode": 12376,
+        "compressed_verify_seconds": 0.336657416,
+        "compression_seconds": 25.738952833,
+        "compression_setup_seconds": 0.638475458
+      },
+      "final_decision": false,
+      "final_x_bits": "0x3edd0d30",
+      "primary_constraints": 435316,
+      "primary_variables": 418938,
+      "prove_step_loop_seconds": 1.3721353330000001,
+      "prover_ivc_seconds": 1.4643210830000002,
+      "prover_mean_step_seconds": 0.0001488862123480903,
+      "prover_seconds_per_fold": 0.16270234255555557,
+      "prover_seconds_per_logistic_step": 0.00015888900640190974,
+      "prover_total_seconds": 1.3721353330000001,
+      "recursive_new_seconds": 0.09218575,
+      "recursive_verify_seconds": 0.285737083,
+      "rep": 0,
+      "secondary_constraints": 10349,
+      "secondary_variables": 10331,
+      "setup_seconds": 23.139396917,
+      "steady_fold_seconds": 0.17151691662500002,
+      "steady_seconds_per_logistic_step": 0.00016749698889160158
+    }
+  ],
+  "state_field_elements": 8,
+  "steps": 9216,
+  "steps_per_fold": 1024,
+  "threshold": 0.5,
+  "validate_input": false,
+  "workload": "logistic-map",
+  "x0": 0.10000000149011612
+}

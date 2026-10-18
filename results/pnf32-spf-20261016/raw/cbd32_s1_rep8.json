@@ -1,0 +1,40 @@
+{
+  "backend": "nova-snark 0.73.0, Pallas/Vesta, IPA",
+  "folds": 512,
+  "peak_rss_bytes": 162283520,
+  "r": "37/10",
+  "raw_fold_constraints": 709,
+  "raw_step_constraints": 709,
+  "representation": "cbd32",
+  "runs": [
+    {
+      "compressed": {
+        "compressed_proof_bytes_bincode": 10752,
+        "compressed_verify_seconds": 0.032679334,
+        "compression_seconds": 1.5656068749999998,
+        "compression_setup_seconds": 0.073041416
+      },
+      "primary_constraints": 12086,
+      "primary_variables": 12053,
+      "prove_step_loop_seconds": 22.659235791,
+      "prover_ivc_seconds": 22.681211916,
+      "prover_seconds_per_fold": 0.0442992420234375,
+      "prover_seconds_per_logistic_step": 0.0442992420234375,
+      "recursive_new_seconds": 0.021976125,
+      "recursive_verify_seconds": 0.029835958,
+      "rep": 0,
+      "secondary_constraints": 10349,
+      "secondary_variables": 10331,
+      "setup_seconds": 1.4689326249999999,
+      "steady_fold_seconds": 0.04434292718395303,
+      "steady_seconds_per_logistic_step": 0.04434292718395303
+    }
+  ],
+  "source": "proof-numeric-zk/crates/nova-circuit (path dependency, sem modificação)",
+  "state_field_elements": 6,
+  "steps": 512,
+  "steps_per_fold": 1,
+  "threshold": "1/2",
+  "workload": "logistic-map",
+  "x0": "1/10"
+}

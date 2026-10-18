@@ -1,0 +1,68 @@
+== testes
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test r_and_x0_are_the_same_numbers_in_both_parts ... ok
+test z0_check_rejects_inconsistent_initial_state ... ok
+test test_constraint_system_agrees ... ok
+test breakdown_adds_up ... ok
+test combination_is_unique_and_correct ... ok
+test model_variant_encloses_decimal_r_trajectory ... ok
+test ieee_output_is_bit_exact_k2 ... ok
+test ieee_output_is_bit_exact_k4 ... ok
+test nova_proves_dual_trajectory ... ok
+test enclosure_contains_exact_rational_trajectory ... ok
+test enclosure_contains_directed_reference_long_horizon ... ok
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 10.12s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test add_mini8 ... ignored
+test decision_mini8 ... ok
+test mul_mini6 ... ok
+test add_mini6 ... ok
+test mul_mini8 ... ok
+test result: ok. 4 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 33.31s
+test field_repr_is_little_endian ... ok
+test test_constraint_system_agrees_with_check_cs ... ok
+test logistic_steps_match_native_f32 ... ok
+test hard_cases ... ok
+test tampered_witnesses_are_rejected ... ok
+test near_path_cancellation has been running for over 60 seconds
+test random_binary32_pairs has been running for over 60 seconds
+test near_path_cancellation ... ok
+test random_binary32_pairs ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 102.99s
+test test_constraint_system_agrees ... ok
+test constraints_are_linear_in_steps_per_fold ... ok
+test matrix_density_is_linear_in_steps_per_fold ... ok
+test witness_only_mode_produces_identical_witness ... ok
+test final_state_matches_native_f32 ... ok
+test chained_fold_equals_separate_folds ... ok
+test nova_chained_matches_unchained ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.14s
+test tests::binary32_constants ... ok
+test tests::softfloat_crate_subnormal_counterexample ... ok
+test tests::mini_roundtrip_exhaustive ... ok
+test tests::hard_cases ... ok
+test tests::logistic_trajectory_matches_native ... ok
+test tests::bits_roundtrip_sampled ... ok
+test tests::oracle_matches_native ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.30s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test cbd32_chained_equals_separate ... ok
+test fp32_chained_equals_separate ... ok
+test nova_chained_matches_unchained ... ok
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.62s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test decision_mini8 ... ok
+test mul_mini6 ... ok
+test add_mini6 ... ok
+test mul_mini8 ... ok
+test add_mini8 has been running for over 60 seconds
+test add_mini8 ... ok
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 201.30s

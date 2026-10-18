@@ -1,0 +1,73 @@
+{
+  "backend": "nova-snark 0.73.0, Pallas/Vesta, IPA",
+  "peak_rss_bytes": 183615488,
+  "r": 3.700000047683716,
+  "r_variable": false,
+  "raw_step_constraints": 415,
+  "representation": "pnf32",
+  "runs": [
+    {
+      "compressed": {
+        "compressed_proof_bytes_bincode": 10816,
+        "compressed_verify_seconds": 0.030357667,
+        "compression_seconds": 1.504261625,
+        "compression_setup_seconds": 0.063981208
+      },
+      "final_decision": true,
+      "final_x_bits": "0x3f508fb8",
+      "primary_constraints": 11794,
+      "primary_variables": 11784,
+      "prover_mean_step_seconds": 0.0400743875,
+      "prover_total_seconds": 0.400743875,
+      "recursive_verify_seconds": 0.027748917,
+      "rep": 0,
+      "secondary_constraints": 10349,
+      "secondary_variables": 10331,
+      "setup_seconds": 1.178387
+    },
+    {
+      "compressed": {
+        "compressed_proof_bytes_bincode": 10816,
+        "compressed_verify_seconds": 0.029271083,
+        "compression_seconds": 1.626582833,
+        "compression_setup_seconds": 0.067177542
+      },
+      "final_decision": true,
+      "final_x_bits": "0x3f508fb8",
+      "primary_constraints": 11794,
+      "primary_variables": 11784,
+      "prover_mean_step_seconds": 0.0458320875,
+      "prover_total_seconds": 0.458320875,
+      "recursive_verify_seconds": 0.035801166,
+      "rep": 1,
+      "secondary_constraints": 10349,
+      "secondary_variables": 10331,
+      "setup_seconds": 2.0327325
+    },
+    {
+      "compressed": {
+        "compressed_proof_bytes_bincode": 10816,
+        "compressed_verify_seconds": 0.030148709,
+        "compression_seconds": 1.596949542,
+        "compression_setup_seconds": 0.067199833
+      },
+      "final_decision": true,
+      "final_x_bits": "0x3f508fb8",
+      "primary_constraints": 11794,
+      "primary_variables": 11784,
+      "prover_mean_step_seconds": 0.0451774,
+      "prover_total_seconds": 0.451774,
+      "recursive_verify_seconds": 0.035349667,
+      "rep": 2,
+      "secondary_constraints": 10349,
+      "secondary_variables": 10331,
+      "setup_seconds": 1.663395916
+    }
+  ],
+  "state_field_elements": 8,
+  "steps": 10,
+  "threshold": 0.5,
+  "validate_input": false,
+  "workload": "logistic-map",
+  "x0": 0.10000000149011612
+}

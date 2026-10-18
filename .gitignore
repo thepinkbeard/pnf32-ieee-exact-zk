@@ -1,0 +1,8 @@
+# build
+target/
+**/target/
+target-baselines/
+# macOS
+.DS_Store
+# PDFs de terceiros com direitos autorais (ver docs/refs/README.md)
+docs/refs/*.pdf

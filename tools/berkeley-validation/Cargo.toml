@@ -1,0 +1,14 @@
+[package]
+name = "berkeley-validation"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+# `softfloat-sys` só compila em host x86_64 Linux (o build script olha o host).
+# Ver proof-numeric-zk, registros 0007 e 0022. Rodar via scripts/run_berkeley_validation.sh.
+[target.'cfg(all(target_arch = "x86_64", target_os = "linux"))'.dev-dependencies]
+softfloat-wrapper = "0.3.4"
+pnf-reference = { path = "../../crates/pnf-reference" }
+pnf-circuit = { path = "../../crates/pnf-circuit" }
+nova-snark.workspace = true

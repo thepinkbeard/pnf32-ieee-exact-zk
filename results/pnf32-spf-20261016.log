@@ -1,0 +1,140 @@
+== testes
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test add_mini8 ... ignored
+test decision_mini8 ... ok
+test mul_mini6 ... ok
+test add_mini6 ... ok
+test mul_mini8 ... ok
+test result: ok. 4 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 25.71s
+test field_repr_is_little_endian ... ok
+test test_constraint_system_agrees_with_check_cs ... ok
+test logistic_steps_match_native_f32 ... ok
+test hard_cases ... ok
+test tampered_witnesses_are_rejected ... ok
+test near_path_cancellation has been running for over 60 seconds
+test random_binary32_pairs has been running for over 60 seconds
+test near_path_cancellation ... ok
+test random_binary32_pairs ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 101.85s
+test test_constraint_system_agrees ... ok
+test constraints_are_linear_in_steps_per_fold ... ok
+test final_state_matches_native_f32 ... ok
+test chained_fold_equals_separate_folds ... ok
+test nova_chained_matches_unchained ... ok
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.89s
+test tests::binary32_constants ... ok
+test tests::softfloat_crate_subnormal_counterexample ... ok
+test tests::mini_roundtrip_exhaustive ... ok
+test tests::hard_cases ... ok
+test tests::logistic_trajectory_matches_native ... ok
+test tests::bits_roundtrip_sampled ... ok
+test tests::oracle_matches_native ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.31s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test cbd32_chained_equals_separate ... ok
+test fp32_chained_equals_separate ... ok
+test nova_chained_matches_unchained ... ok
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.94s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test decision_mini8 ... ok
+test mul_mini6 ... ok
+test add_mini6 ... ok
+test mul_mini8 ... ok
+test add_mini8 has been running for over 60 seconds
+test add_mini8 ... ok
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 177.34s
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.06s
+rep 0 ok 20:42:12
+rep 1 ok 20:44:58
+rep 2 ok 20:47:37
+rep 3 ok 20:50:15
+rep 4 ok 20:52:56
+rep 5 ok 20:55:36
+rep 6 ok 20:58:14
+rep 7 ok 21:00:55
+rep 8 ok 21:03:45
+rep 9 ok 21:06:33
+rep 10 ok 21:09:14
+rep 11 ok 21:11:58
+rep 12 ok 21:14:40
+rep 13 ok 21:41:37
+rep 14 ok 21:44:23
+rep 15 ok 21:47:14
+rep 16 ok 21:50:05
+rep 17 ok 21:52:42
+rep 18 ok 21:55:19
+rep 19 ok 21:57:59
+rep 20 ok 22:00:39
+rep 21 ok 22:03:21
+rep 22 ok 22:06:01
+rep 23 ok 22:08:45
+rep 24 ok 22:11:36
+rep 25 ok 22:14:28
+rep 26 ok 22:17:09
+rep 27 ok 22:19:49
+rep 28 ok 22:22:30
+rep 29 ok 22:25:18
+# Steps-per-fold — resumo
+
+n = 30 repetições pareadas; IC 95% (t).
+
+## Tempo do prover por passo logístico (ms) — `new + prove_step*` / passos
+
+| S | PNF32 | FP32 | CBD-32 | PNF/FP32 (pareado) | PNF/CBD (pareado) |
+|---:|---|---|---|---|---|
+| 1 | 46.121 [45.391, 46.850] | 45.595 [44.881, 46.309] | 45.404 [44.410, 46.398] | 1.011 [0.996, 1.027] | 1.016 [0.994, 1.039] |
+| 4 | 11.960 [11.730, 12.190] | 11.982 [11.772, 12.193] | 12.058 [11.772, 12.345] | 0.998 [0.981, 1.015] | 0.992 [0.967, 1.019] |
+| 16 | 3.212 [3.161, 3.263] | 3.378 [3.281, 3.476] | 3.296 [3.192, 3.400] | 0.952 [0.926, 0.980] | 0.977 [0.946, 1.008] |
+| 64 | 1.059 [1.047, 1.071] | 1.054 [1.023, 1.084] | 0.968 [0.949, 0.986] | 1.007 [0.981, 1.034] | 1.095 [1.073, 1.117] |
+
+## Regime estacionário: `prove_step` por passo (ms), excluindo `new`
+
+| S | PNF32 | FP32 | CBD-32 | PNF/FP32 | PNF/CBD |
+|---:|---|---|---|---|---|
+| 1 | 46.167 [45.436, 46.898] | 45.642 [44.927, 46.356] | 45.450 [44.454, 46.446] | 1.011 [0.996, 1.027] | 1.016 [0.994, 1.039] |
+| 4 | 12.007 [11.777, 12.238] | 12.032 [11.821, 12.244] | 12.108 [11.822, 12.395] | 0.998 [0.981, 1.015] | 0.992 [0.966, 1.019] |
+| 16 | 3.262 [3.210, 3.315] | 3.439 [3.340, 3.539] | 3.356 [3.249, 3.463] | 0.950 [0.923, 0.978] | 0.974 [0.944, 1.006] |
+| 64 | 1.112 [1.099, 1.126] | 1.140 [1.105, 1.175] | 1.049 [1.029, 1.070] | 0.978 [0.952, 1.006] | 1.061 [1.039, 1.084] |
+
+## Ganho de S sobre S = 1 (razão pareada do tempo por passo)
+
+| S | PNF32 | FP32 | CBD-32 |
+|---:|---|---|---|
+| 4 | 0.259 [0.255, 0.264] | 0.263 [0.258, 0.268] | 0.265 [0.258, 0.273] |
+| 16 | 0.070 [0.069, 0.071] | 0.074 [0.072, 0.076] | 0.072 [0.070, 0.075] |
+| 64 | 0.023 [0.023, 0.023] | 0.023 [0.022, 0.024] | 0.021 [0.021, 0.022] |
+
+## Constraints, compressão e verificação
+
+| repr | S | raw/fold | primárias | setup (s) | compressão (s) | verify comp. (ms) | verify rec. (ms) | prova (B) | RSS máx (MiB) |
+|---|---:|---:|---:|---|---|---|---|---|---:|
+| pnf32 | 1 | 415 | 11794 | 1.653 ± 0.062 | 1.745 ± 0.056 | 31.6 ± 0.8 | 34.1 ± 1.0 | 10816 | 157 |
+| pnf32 | 4 | 1654 | 13033 | 1.610 ± 0.062 | 1.709 ± 0.062 | 31.7 ± 0.9 | 34.5 ± 1.1 | 10816 | 160 |
+| pnf32 | 16 | 6610 | 17989 | 2.191 ± 0.083 | 2.539 ± 0.058 | 40.6 ± 1.5 | 35.6 ± 0.9 | 11128 | 199 |
+| pnf32 | 64 | 26434 | 37813 | 3.364 ± 0.171 | 4.140 ± 0.121 | 57.4 ± 1.5 | 51.5 ± 2.2 | 11440 | 325 |
+| fp32 | 1 | 1721 | 13097 | 1.603 ± 0.053 | 1.595 ± 0.043 | 31.7 ± 0.7 | 34.2 ± 1.1 | 10720 | 163 |
+| fp32 | 4 | 6884 | 18260 | 2.236 ± 0.083 | 2.376 ± 0.068 | 41.3 ± 1.9 | 37.1 ± 1.3 | 11032 | 198 |
+| fp32 | 16 | 27536 | 38912 | 3.467 ± 0.133 | 3.864 ± 0.090 | 58.3 ± 2.7 | 49.2 ± 2.0 | 11344 | 299 |
+| fp32 | 64 | 110144 | 121520 | 5.926 ± 0.232 | 6.790 ± 0.207 | 94.3 ± 2.2 | 116.5 ± 6.1 | 11656 | 635 |
+| cbd32 | 1 | 709 | 12086 | 1.586 ± 0.059 | 1.586 ± 0.031 | 31.9 ± 1.6 | 33.4 ± 0.8 | 10752 | 157 |
+| cbd32 | 4 | 2836 | 14213 | 1.549 ± 0.054 | 1.664 ± 0.048 | 32.1 ± 1.1 | 35.2 ± 0.9 | 10752 | 165 |
+| cbd32 | 16 | 11344 | 22721 | 2.175 ± 0.075 | 2.387 ± 0.056 | 40.6 ± 0.7 | 43.5 ± 2.2 | 11064 | 212 |
+| cbd32 | 64 | 45376 | 56753 | 3.363 ± 0.132 | 3.982 ± 0.118 | 58.7 ± 3.7 | 84.9 ± 2.2 | 11376 | 367 |
+
+## Compressão pareada (PNF / baseline)
+
+| S | PNF/FP32 | PNF/CBD |
+|---:|---|---|
+| 1 | 1.093 [1.051, 1.138] | 1.098 [1.066, 1.131] |
+| 4 | 0.718 [0.684, 0.752] | 1.025 [0.974, 1.078] |
+| 16 | 0.657 [0.639, 0.676] | 1.064 [1.038, 1.090] |
+| 64 | 0.610 [0.583, 0.638] | 1.040 [1.001, 1.079] |
+
+Soma por repetição (s): mediana 158.2; descartadas na análise de sensibilidade: nenhuma.
+ok: results/pnf32-spf-20261016

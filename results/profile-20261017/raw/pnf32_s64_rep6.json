@@ -1,0 +1,120 @@
+{
+  "backend": "nova-snark 0.73.0 INSTRUMENTADO (vendor/nova-snark-0.73.0-prof)",
+  "census": {
+    "primary.T": {
+      "groups": {
+        "large": 18622,
+        "le16": 2,
+        "le32": 2,
+        "le64": 9,
+        "le8": 7,
+        "unit": 89,
+        "zero": 19145
+      },
+      "len": 37876
+    },
+    "primary.W": {
+      "groups": {
+        "large": 6976,
+        "le16": 195,
+        "le32": 707,
+        "le64": 449,
+        "le8": 855,
+        "unit": 8040,
+        "zero": 19636
+      },
+      "len": 36858
+    },
+    "secondary.T": {
+      "groups": {
+        "large": 8102,
+        "le16": 0,
+        "le32": 0,
+        "le64": 0,
+        "le8": 0,
+        "unit": 0,
+        "zero": 2247
+      },
+      "len": 10349
+    },
+    "secondary.W": {
+      "groups": {
+        "large": 4782,
+        "le16": 0,
+        "le32": 0,
+        "le64": 76,
+        "le8": 2,
+        "unit": 1930,
+        "zero": 3541
+      },
+      "len": 10331
+    }
+  },
+  "field_bits": 255,
+  "peak_rss_bytes": 151764992,
+  "phases": {
+    "primary.commit_W": {
+      "calls": 8,
+      "seconds_per_fold": 0.009705859375
+    },
+    "primary.nifs.T_matvec": {
+      "calls": 8,
+      "seconds_per_fold": 0.0017837186250000002
+    },
+    "primary.nifs.commit_T": {
+      "calls": 8,
+      "seconds_per_fold": 0.008275416375
+    },
+    "primary.nifs.fold_UW": {
+      "calls": 8,
+      "seconds_per_fold": 0.000646739625
+    },
+    "primary.nifs_total": {
+      "calls": 8,
+      "seconds_per_fold": 0.010907583500000002
+    },
+    "primary.synthesize": {
+      "calls": 8,
+      "seconds_per_fold": 0.004346000125
+    },
+    "prove_step_total": {
+      "calls": 8,
+      "seconds_per_fold": 0.043750796875
+    },
+    "secondary.commit_W": {
+      "calls": 8,
+      "seconds_per_fold": 0.007590271000000001
+    },
+    "secondary.nifs.T_matvec": {
+      "calls": 8,
+      "seconds_per_fold": 0.000866828125
+    },
+    "secondary.nifs.commit_T": {
+      "calls": 8,
+      "seconds_per_fold": 0.007768718375000001
+    },
+    "secondary.nifs.fold_UW": {
+      "calls": 8,
+      "seconds_per_fold": 0.0005421775
+    },
+    "secondary.nifs_total": {
+      "calls": 8,
+      "seconds_per_fold": 0.009371291625
+    },
+    "secondary.synthesize": {
+      "calls": 8,
+      "seconds_per_fold": 0.001766115
+    }
+  },
+  "primary_constraints": 37876,
+  "primary_variables": 36858,
+  "recursive_new_seconds": 0.021926333,
+  "representation": "pnf32",
+  "secondary_constraints": 10349,
+  "secondary_variables": 10331,
+  "setup_seconds": 2.430808167,
+  "steady_wall_seconds_per_fold": 0.043751828125,
+  "step_only_synthesis_seconds": 0.002475375,
+  "steps_per_fold": 64,
+  "timed_folds": 8
+}

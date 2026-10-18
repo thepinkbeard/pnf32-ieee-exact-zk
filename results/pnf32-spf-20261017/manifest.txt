@@ -1,0 +1,7 @@
+date: 2026-10-17T12:39:11Z
+host: Apple M5 Pro, 15 cpus
+rustc: rustc 1.85.0 (4d91de4e4 2025-02-17)
+reps: 30  steps: FOLDS*S (FOLDS=9)  steps_per_fold: 1 4 16 64 256 1024  seed: 5
+r: 3.7 (pnf32/fp32 f32; cbd32 37/10)  x0: 0.1 (cbd32 1/10)  threshold: 1/2
+79bd147ee1379573a156a9697f08a9cda916c271606c398a20026ab08d08881b  results/pnf32-spf-20261017/bin/pnf-bench
+1d4475e5468ec4d8c74947321666ec1f572ca30b97a0c0ac38d2cfb13b6e0dc7  results/pnf32-spf-20261017/bin/spf-baselines

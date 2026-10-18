@@ -1,0 +1,35 @@
+{
+  "backend": "nova-snark 0.73.0, Pallas/Vesta, IPA",
+  "peak_rss_bytes": 160153600,
+  "r": 3.700000047683716,
+  "r_variable": false,
+  "raw_step_constraints": 468,
+  "representation": "pnf32",
+  "runs": [
+    {
+      "compressed": {
+        "compressed_proof_bytes_bincode": 10816,
+        "compressed_verify_seconds": 0.030189959,
+        "compression_seconds": 1.623762375,
+        "compression_setup_seconds": 0.067874542
+      },
+      "final_decision": true,
+      "final_x_bits": "0x3f508fb8",
+      "primary_constraints": 11847,
+      "primary_variables": 11825,
+      "prover_mean_step_seconds": 0.04363095,
+      "prover_total_seconds": 0.4363095,
+      "recursive_verify_seconds": 0.033310209,
+      "rep": 0,
+      "secondary_constraints": 10349,
+      "secondary_variables": 10331,
+      "setup_seconds": 1.580098292
+    }
+  ],
+  "state_field_elements": 8,
+  "steps": 10,
+  "threshold": 0.5,
+  "validate_input": true,
+  "workload": "logistic-map",
+  "x0": 0.10000000149011612
+}

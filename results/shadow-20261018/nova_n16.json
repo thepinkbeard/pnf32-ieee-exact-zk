@@ -1,0 +1,18 @@
+{
+  "compressed_proof_bytes": 10880,
+  "compressed_verify_seconds": 0.022978833,
+  "compression_seconds": 1.088912625,
+  "compression_setup_seconds": 0.043299,
+  "eps": 9.734428729757383e-8,
+  "final_x_bits": "0x3f508615",
+  "grid_bits_K": 48,
+  "note": "tempos de uma rodada só (smoke); máquina compartilhada",
+  "primary_constraints": 12416,
+  "prover_seconds": 0.563413084,
+  "r": 3.9000000953674316,
+  "recursive_verify_seconds": 0.025980167,
+  "secondary_constraints": 10349,
+  "setup_seconds": 1.011397292,
+  "steps": 16,
+  "x0": 0.10000000149011612
+}

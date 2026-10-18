@@ -1,0 +1,3 @@
+rep 0: S=1 prover 2.2232s (0.222317s/passo) verify 0.1209s {"compressed_proof_bytes_bincode":10816,"compressed_verify_seconds":0.184214,"compression_seconds":3.198565416,"compression_setup_seconds":0.092510542}
+rep 1: S=1 prover 1.9404s (0.194036s/passo) verify 0.0498s {"compressed_proof_bytes_bincode":10816,"compressed_verify_seconds":0.112728792,"compression_seconds":3.195607958,"compression_setup_seconds":0.091161542}
+rep 2: S=1 prover 1.9134s (0.191340s/passo) verify 0.0483s {"compressed_proof_bytes_bincode":10816,"compressed_verify_seconds":0.127176084,"compression_seconds":3.226853,"compression_setup_seconds":0.08998375}

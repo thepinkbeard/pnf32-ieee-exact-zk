@@ -1,0 +1,16 @@
+[package]
+name = "pnf-circuit"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+ff.workspace = true
+nova-snark.workspace = true
+num-bigint.workspace = true
+num-traits.workspace = true
+pnf-reference = { path = "../pnf-reference" }
+
+[dev-dependencies]
+softfloat.workspace = true

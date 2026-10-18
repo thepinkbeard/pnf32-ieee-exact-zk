@@ -1,0 +1,5 @@
+date: 2026-10-16T20:33:55Z
+host: Apple M5 Pro, 15 cpus
+rustc: rustc 1.85.0 (4d91de4e4 2025-02-17)
+reps: 30  steps: 512  steps_per_fold: 1 4 16 64  seed: 5
+r: 3.7 (pnf32/fp32 f32; cbd32 37/10)  x0: 0.1 (cbd32 1/10)  threshold: 1/2
