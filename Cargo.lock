@@ -374,6 +374,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "dyadic-fused"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "bincode",
+ "clap",
+ "ff",
+ "nova-snark",
+ "num-bigint 0.4.6",
+ "num-traits",
+ "pnf-circuit",
+ "serde_json",
+]
+
+[[package]]
 name = "either"
 version = "1.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["crates/pnf-reference", "crates/pnf-circuit", "crates/pnf-bench", "crates/spf-baselines", "crates/dual-proof", "crates/shadow-proof", "crates/wad-baseline", "tools/berkeley-validation"]
+members = ["crates/pnf-reference", "crates/pnf-circuit", "crates/pnf-bench", "crates/spf-baselines", "crates/dual-proof", "crates/shadow-proof", "crates/wad-baseline", "crates/dyadic-fused", "tools/berkeley-validation"]
 # Workspace próprio, com nova-snark instrumentado (log 0006).
 exclude = ["profiling", "vendor"]
 

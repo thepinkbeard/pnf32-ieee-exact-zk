@@ -1,0 +1,52 @@
+{
+  "arity": 3,
+  "field": "Pallas scalar",
+  "profiles": [
+    {
+      "breakdown": {
+        "arith": 1,
+        "io": 3,
+        "range": 87
+      },
+      "constraints_per_step": 91,
+      "max_bits": 88,
+      "p": 32,
+      "s": 22
+    },
+    {
+      "breakdown": {
+        "arith": 1,
+        "io": 3,
+        "range": 151
+      },
+      "constraints_per_step": 155,
+      "max_bits": 152,
+      "p": 64,
+      "s": 22
+    },
+    {
+      "breakdown": {
+        "arith": 1,
+        "io": 3,
+        "range": 215
+      },
+      "constraints_per_step": 219,
+      "max_bits": 216,
+      "p": 96,
+      "s": 22
+    },
+    {
+      "breakdown": {
+        "arith": 1,
+        "io": 3,
+        "range": 243
+      },
+      "constraints_per_step": 247,
+      "max_bits": 244,
+      "p": 110,
+      "s": 22
+    }
+  ],
+  "representation": "ponto fixo diádico fundido (escala 2^-p, piso, 1 arredondamento/passo)",
+  "workload": "logistic-map + decision x>=1/2"
+}

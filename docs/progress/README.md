@@ -27,6 +27,7 @@ Ponto de retomada para pessoas e agentes automatizados. Segue o mesmo modelo de
 | [0010](0010-perfil-e-s1024.md) | 2026-10-17 | concluído | Perfil por fase; duas correções na PNF (LC crescente, modo só-witness); S até 1024: prover 2,1× mais rápido que FP32 e 1,4× que CBD-32 (revisa o 0005) |
 | [0011](0011-prova-de-sombreamento.md) | 2026-10-18 | concluído (protótipo) | G2: PNF32 + sombreamento HYG, 1.035 constraints/fold, 100% das sementes certificadas até 65.536 passos; sombreamento sozinho não barra o ataque |
 | [0012](0012-pnf64-e-wad.md) | 2026-10-22 | concluído | PNF64 (677/passo, bit-exata ao f64) e baseline WAD (431/passo); G2 em binary64 (1.885/fold, 1.001/1.001 certificadas até 4.096) |
+| [0013](0013-ponto-fixo-diadico-fundido.md) | 2026-10-23 | concluído | Ponto fixo diádico fundido: 91/155/219/247 constraints para p=32/64/96/110 (2p+s+5); unicidade exaustiva nos perfis mini; 3,2 M decisões iguais à referência; horizonte segue `p·ln2/λ` |
 
 ## Modelo obrigatório
 
