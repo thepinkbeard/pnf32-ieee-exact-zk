@@ -14,6 +14,10 @@ use pnf_reference::Format;
 use crate::gadgets::*;
 use crate::pnf::PnfVar;
 
+/// Bits que um inteiro intermediário pode ter sem dar a volta no corpo de
+/// Pallas/Vesta (~2^254), com folga.
+pub const FIELD_SAFE_BITS: i128 = 250;
+
 /// Larguras e constantes derivadas do formato.
 #[derive(Clone, Copy, Debug)]
 pub struct Widths {
@@ -44,17 +48,32 @@ impl Widths {
         let mul_c = mul_k - (emin + p - 1 - 2 * emax);
         let add_k = p + 3;
         let bl = |v: i128| bitlen(v.max(1) as u128);
+        // Largura de k na mul. O k honesto fica em [0, K] (o produto de um
+        // normal por qualquer finito tem lead >= p-1; dois subnormais caem no
+        // ramo `sub`). A margem até K+p-1 vem do binary32 e é mantida onde
+        // P·2^k < 2^(2p + 2^kb - 1) cabe no corpo (~2^254), para que
+        // P·2^k = Q·2^K + R valha nos inteiros. No binary64 ela não cabe e
+        // k fica com bitlen(K) bits.
+        let kb_wide = bl(mul_k + p - 1);
+        let mul_kb = if 2 * p + (1 << kb_wide) - 1 <= FIELD_SAFE_BITS {
+            kb_wide
+        } else {
+            bl(mul_k)
+        };
+        let add_kb = bl(add_k + p - 1);
+        assert!(2 * p + (1 << mul_kb) - 1 <= FIELD_SAFE_BITS, "mul: P·2^k estoura o corpo");
+        assert!(2 * p + 3 + (1 << add_kb) - 1 <= FIELD_SAFE_BITS, "add: |X|·2^k estoura o corpo");
         Self {
             p,
             emin,
             emax,
             mul_k,
-            mul_kb: bl(mul_k + p - 1),
+            mul_kb,
             mul_c,
             mul_yb: bl((2 * emax - emin + 1).max(2 * (emax - emin))),
             mul_ob: bl((emax - 2 * emin - p - 2).max(emax + 1)),
             add_k,
-            add_kb: bl(add_k + p - 1),
+            add_kb,
             add_db: bl(emax - emin),
             add_bigb: bl((emax - emin - (p + 3)).max(p + 2)),
             add_powb: bl(p + 2),
@@ -129,7 +148,7 @@ pub fn honest_mul_hints<F: PrimeField>(fmt: Format, a: &PnfVar<F>, b: &PnfVar<F>
         }
     };
     let k = (w.mul_k - dexp) as u32;
-    let (q, r) = split(prod << k, w.mul_k as u32);
+    let (q, r) = split_shifted(prod, k, w.mul_k as u32);
     let carry = rounds_to_carry(q, r, w.mul_k as u32, fmt.p);
     let e_out = ea + eb - w.p + 1 + dexp + carry as i128;
     MulHints {
@@ -140,6 +159,16 @@ pub fn honest_mul_hints<F: PrimeField>(fmt: Format, a: &PnfVar<F>, b: &PnfVar<F>
 
 fn split(n: u128, cut: u32) -> (u128, u128) {
     (n >> cut, n & ((1 << cut) - 1))
+}
+
+/// `split(n << k, cut)` sem formar `n << k`, que no binary64 passa de 128 bits.
+fn split_shifted(n: u128, k: u32, cut: u32) -> (u128, u128) {
+    if k <= cut {
+        let s = cut - k;
+        (n >> s, (n & ((1 << s) - 1)) << k)
+    } else {
+        split(n << k, cut)
+    }
 }
 
 fn rounds_to_carry(q: u128, r: u128, cut: u32, p: u32) -> bool {

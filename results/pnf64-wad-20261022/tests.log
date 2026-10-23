@@ -1,0 +1,69 @@
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test add_mini8 ... ignored
+test decision_mini8 ... ok
+test mul_mini6 ... ok
+test add_mini6 ... ok
+test mul_mini8 ... ok
+test result: ok. 4 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 17.52s
+test field_repr_is_little_endian ... ok
+test test_constraint_system_agrees_with_check_cs ... ok
+test logistic_steps_match_native_f32 ... ok
+test hard_cases ... ok
+test tampered_witnesses_are_rejected ... ok
+test near_path_cancellation ... ok
+test random_binary32_pairs has been running for over 60 seconds
+test random_binary32_pairs ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 68.78s
+test step_circuit_binary64_is_satisfied ... ok
+test test_constraint_system_agrees_with_check_cs ... ok
+test hard_cases ... ok
+test logistic_steps_match_native_f64 ... ok
+test near_path_cancellation ... ok
+test random_binary64_pairs ... ok
+test tampered_witnesses_are_rejected ... ok
+test unit_interval_pairs ... ok
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 48.36s
+test test_constraint_system_agrees ... ok
+test constraints_are_linear_in_steps_per_fold ... ok
+test matrix_density_is_linear_in_steps_per_fold ... ok
+test witness_only_mode_produces_identical_witness ... ok
+test final_state_matches_native_f32 ... ok
+test chained_fold_equals_separate_folds ... ok
+test nova_chained_matches_unchained ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.49s
+test tests::binary32_constants ... ok
+test tests::softfloat_crate_subnormal_counterexample ... ok
+test tests::mini_roundtrip_exhaustive ... ok
+test tests::hard_cases_binary64 ... ok
+test tests::hard_cases ... ok
+test tests::logistic_trajectory_matches_native ... ok
+test tests::binary64_constants ... ok
+test tests::logistic_trajectory_matches_native_binary64 ... ok
+test tests::bits_roundtrip_sampled ... ok
+test tests::oracle_matches_native ... ok
+test tests::oracle_matches_native_binary64 ... ok
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.67s
+test cert::tests::grid_and_map_exact ... ok
+test cert::tests::certificate_checks_and_rejects_tampering ... ok
+test cert::tests::hyg_case_binary64_is_shadowed ... ok
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test test_cs_agrees ... ok
+test binary64_test_cs_agrees ... ok
+test tampering_is_rejected ... ok
+test binary64_tampering_is_rejected ... ok
+test honest_folds_chain_and_match_native ... ok
+test binary64_honest_folds_chain_and_match_native ... ok
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.29s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test to_wad_is_floor ... ok
+test test_cs_agrees ... ok
+test extremes ... ok
+test tampered_witnesses_are_rejected ... ok
+test chained_folds_match_reference ... ok
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.70s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

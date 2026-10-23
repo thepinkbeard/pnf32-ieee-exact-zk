@@ -1,0 +1,13 @@
+{
+  "arity": 3,
+  "breakdown": {
+    "arith": 3,
+    "decision": 1,
+    "io": 1,
+    "range": 426
+  },
+  "constraints_per_step": 431,
+  "field": "Pallas scalar",
+  "representation": "WAD (10^18, mulWad piso)",
+  "workload": "logistic-map"
+}

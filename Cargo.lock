@@ -1356,6 +1356,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "051eb1abcf10076295e815102942cc58f9d5e3b4560e46e53c21e8ff6f3af7b1"
 
 [[package]]
+name = "wad-baseline"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "ff",
+ "nova-snark",
+ "pnf-circuit",
+ "serde_json",
+]
+
+[[package]]
 name = "wasi"
 version = "0.11.1+wasi-snapshot-preview1"
 source = "registry+https://github.com/rust-lang/crates.io-index"

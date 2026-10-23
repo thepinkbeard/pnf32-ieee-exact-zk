@@ -51,11 +51,15 @@ enum Cmd {
     },
     /// Constraints por fold do circuito PNF32 + sombreamento.
     Constraints {
+        #[arg(long, value_enum, default_value = "b32")]
+        format: Fmt,
         #[arg(long)]
         out: PathBuf,
     },
     /// IVC Nova curto com o circuito completo.
     Nova {
+        #[arg(long, value_enum, default_value = "b32")]
+        format: Fmt,
         #[arg(long, default_value_t = 16)]
         steps: usize,
         #[arg(long, default_value_t = 3.9)]
@@ -75,6 +79,13 @@ fn fresh(p: &PathBuf) -> Result<()> {
         fs::create_dir_all(d)?;
     }
     Ok(())
+}
+
+fn pnf_format(f: Fmt) -> pnf_reference::Format {
+    match f {
+        Fmt::B32 => pnf_reference::Format::BINARY32,
+        Fmt::B64 => pnf_reference::Format::BINARY64,
+    }
 }
 
 pub fn grid_bits(b32: bool) -> u32 {
@@ -198,8 +209,8 @@ fn main() -> Result<()> {
             println!("{}", serde_json::to_string_pretty(&doc)?);
             fs::write(&out, serde_json::to_vec_pretty(&doc)?)?;
         }
-        Cmd::Constraints { out } => shadow_proof::bench::constraints(out)?,
-        Cmd::Nova { steps, r, x0, out } => shadow_proof::bench::nova(steps, r, x0, out)?,
+        Cmd::Constraints { format, out } => shadow_proof::bench::constraints(pnf_format(format), out)?,
+        Cmd::Nova { format, steps, r, x0, out } => shadow_proof::bench::nova(pnf_format(format), steps, r, x0, out)?,
     }
     Ok(())
 }

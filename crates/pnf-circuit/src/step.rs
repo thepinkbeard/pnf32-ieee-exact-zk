@@ -67,6 +67,16 @@ impl LogisticCircuit {
         }
     }
 
+    /// O mesmo passo em binary64 (PNF64).
+    pub fn new_f64(r: f64, x: f64) -> Self {
+        Self {
+            fmt: Format::BINARY64,
+            r: Pnf::from_f64(r),
+            x: Pnf::from_f64(x),
+            ..Self::new(0.0, 0.0)
+        }
+    }
+
     /// Circuitos de `n` folds a partir de `x0` (witness pela referência);
     /// cada fold avança `steps_per_fold` passos.
     pub fn trajectory(&self, n: usize) -> Vec<Self> {

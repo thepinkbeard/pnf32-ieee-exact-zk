@@ -1,0 +1,146 @@
+{
+  "field": "Pallas scalar",
+  "format": "binary32",
+  "measurements": {
+    "1 - x (const,var)": {
+      "breakdown": {
+        "align": 9,
+        "arith": 5,
+        "class": 9,
+        "exponent": 5,
+        "range": 95,
+        "rounding": 3,
+        "shift": 9,
+        "zero-test": 6
+      },
+      "constraints": 141
+    },
+    "STEP ablation: r as validated variable": {
+      "breakdown": {
+        "align": 9,
+        "arith": 13,
+        "class": 29,
+        "decision": 2,
+        "exponent": 13,
+        "io": 2,
+        "range": 349,
+        "rounding": 9,
+        "shift": 21,
+        "validate": 10,
+        "zero-test": 18
+      },
+      "constraints": 475
+    },
+    "STEP ablation: validate input every fold": {
+      "breakdown": {
+        "align": 9,
+        "arith": 10,
+        "class": 25,
+        "decision": 2,
+        "exponent": 13,
+        "io": 2,
+        "range": 349,
+        "rounding": 9,
+        "shift": 21,
+        "validate": 10,
+        "zero-test": 18
+      },
+      "constraints": 468
+    },
+    "STEP logistic + decision (T2 on, r const)": {
+      "breakdown": {
+        "align": 9,
+        "arith": 10,
+        "class": 25,
+        "decision": 2,
+        "exponent": 13,
+        "io": 2,
+        "range": 306,
+        "rounding": 9,
+        "shift": 21,
+        "zero-test": 18
+      },
+      "constraints": 415
+    },
+    "add (var,var)": {
+      "breakdown": {
+        "align": 9,
+        "arith": 5,
+        "class": 13,
+        "exponent": 5,
+        "range": 95,
+        "rounding": 3,
+        "shift": 9,
+        "zero-test": 6
+      },
+      "constraints": 145
+    },
+    "decision x >= 0.5": {
+      "breakdown": {
+        "decision": 2,
+        "range": 9
+      },
+      "constraints": 11
+    },
+    "logistic only (1-x, x*c, p*r)": {
+      "breakdown": {
+        "align": 9,
+        "arith": 10,
+        "class": 25,
+        "exponent": 13,
+        "range": 297,
+        "rounding": 9,
+        "shift": 21,
+        "zero-test": 18
+      },
+      "constraints": 402
+    },
+    "mul (var,var)": {
+      "breakdown": {
+        "arith": 4,
+        "class": 10,
+        "exponent": 4,
+        "range": 101,
+        "rounding": 3,
+        "shift": 6,
+        "zero-test": 6
+      },
+      "constraints": 134
+    },
+    "sub (var,var)": {
+      "breakdown": {
+        "align": 9,
+        "arith": 5,
+        "class": 13,
+        "exponent": 5,
+        "range": 95,
+        "rounding": 3,
+        "shift": 9,
+        "zero-test": 6
+      },
+      "constraints": 145
+    },
+    "validate (T2 ablation)": {
+      "breakdown": {
+        "range": 43,
+        "validate": 10
+      },
+      "constraints": 53
+    },
+    "x * r (var,const)": {
+      "breakdown": {
+        "arith": 1,
+        "class": 6,
+        "exponent": 4,
+        "range": 101,
+        "rounding": 3,
+        "shift": 6,
+        "zero-test": 6
+      },
+      "constraints": 127
+    }
+  },
+  "nan": "canonical 0x7FC00000",
+  "rounding": "RNE",
+  "widths": "Widths { p: 24, emin: -126, emax: 127, mul_k: 49, mul_kb: 7, mul_c: 406, mul_yb: 9, mul_ob: 9, add_k: 27, add_kb: 6, add_db: 8, add_bigb: 8, add_powb: 5, add_ub: 8, add_ob: 9 }"
+}

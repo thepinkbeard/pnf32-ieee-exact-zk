@@ -1,0 +1,21 @@
+{
+  "arity": 10,
+  "breakdown_by_category": {
+    "align": 9,
+    "arith": 10,
+    "class": 25,
+    "decision": 2,
+    "exponent": 13,
+    "io": 3,
+    "range": 1756,
+    "rounding": 9,
+    "shadow": 12,
+    "shift": 28,
+    "zero-test": 18
+  },
+  "circuit": "PNF logistic step + HYG nested-interval shadowing check + verdict",
+  "constraints_per_fold": 1885,
+  "format": "binary64",
+  "grid_bits_K": 96,
+  "non_pnf_part_approx": 1885
+}

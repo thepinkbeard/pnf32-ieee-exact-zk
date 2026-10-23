@@ -1,14 +1,15 @@
-//! Fold Nova: passo PNF32 bit-exato + checagem local do certificado de
-//! sombreamento de HYG + veredito da decisão.
+//! Fold Nova: passo PNF bit-exato + checagem local do certificado de
+//! sombreamento de HYG + veredito da decisão. Formato binary32 (grade 2^-48)
+//! ou binary64 (grade 2^-96).
 //!
 //! Estado (aridade 10): `[contador, s, eb, m, z, inf, nan, A, B, veredito]`,
-//! onde `(s..nan)` é `p_n` em PNF32 (binary32), e `[A, B]` é o intervalo de
+//! onde `(s..nan)` é `p_n` em PNF, e `[A, B]` é o intervalo de
 //! grade `I_n = [A/2^K, B/2^K]` que contém a órbita verdadeira.
 //!
 //! O fold `n` impõe:
 //!
 //! 1. `p_{n+1} = fl(fl(p_n·fl(1−p_n))·r)` (PNF32, bit-exato);
-//! 2. `p_n` finito positivo e na grade (`p_n ≥ 2^-25`);
+//! 2. `p_n` finito positivo e na grade (`p_n ≥ 2^-(K-p+1)`: 2^-25 em binary32, 2^-44 em binary64);
 //! 3. `I_n` inteiro de um lado de 1/2 (bit testemunhado `σ_n`);
 //! 4. `I_{n+1}` testemunhado, com `0 ≤ A' ≤ B' ≤ 2^K`;
 //! 5. aninhamento `f(I_n) ⊇ I_{n+1}` (2 comparações inteiras exatas, escolhidas por `σ_n`);
@@ -27,7 +28,7 @@ use num_bigint::BigInt;
 use num_traits::ToPrimitive;
 use pnf_circuit::{
     gadgets::*,
-    ops::ge_pow2,
+    ops::{ge_pow2, FIELD_SAFE_BITS},
     pnf::{PnfVar, ARITY},
     step::logistic,
 };
@@ -39,6 +40,25 @@ pub const SHADOW_ARITY: usize = 1 + ARITY + 3;
 const B32: Format = Format::BINARY32;
 /// bits fracionários da grade para binary32
 pub const K: u32 = 48;
+/// bits fracionários da grade para binary64
+pub const K64: u32 = 96;
+
+pub fn grid_bits_for(fmt: Format) -> u32 {
+    if fmt == B32 {
+        K
+    } else {
+        assert_eq!(fmt, Format::BINARY64);
+        K64
+    }
+}
+
+fn pnf_of(fmt: Format, x: f64) -> Pnf {
+    if fmt == B32 {
+        Pnf::from_f32(x as f32)
+    } else {
+        Pnf::from_f64(x)
+    }
+}
 
 fn fb<F: PrimeField>(x: &BigInt) -> F {
     f_u128(x.to_u128().expect("valor de grade cabe em u128"))
@@ -46,6 +66,7 @@ fn fb<F: PrimeField>(x: &BigInt) -> F {
 
 #[derive(Clone, Debug)]
 pub struct ShadowCircuit {
+    pub fmt: Format,
     pub map: Map,
     pub r: Pnf,
     pub p: Pnf,
@@ -60,11 +81,24 @@ impl ShadowCircuit {
     /// Circuitos dos folds `0..N` a partir de uma pseudo-órbita binary32 e
     /// do seu certificado.
     pub fn trajectory(map: &Map, r: f32, orbit: &[f64], cert: &Certificate, eps: &BigInt) -> Vec<Self> {
+        Self::trajectory_fmt(B32, map, r as f64, orbit, cert, eps)
+    }
+
+    /// Como [`Self::trajectory`], no formato dado (binary32 ou binary64).
+    pub fn trajectory_fmt(
+        fmt: Format,
+        map: &Map,
+        r: f64,
+        orbit: &[f64],
+        cert: &Certificate,
+        eps: &BigInt,
+    ) -> Vec<Self> {
         (0..orbit.len() - 1)
             .map(|n| Self {
+                fmt,
                 map: map.clone(),
-                r: Pnf::from_f32(r),
-                p: Pnf::from_f32(orbit[n] as f32),
+                r: pnf_of(fmt, r),
+                p: pnf_of(fmt, orbit[n]),
                 cur: cert.intervals[n].clone(),
                 next: cert.intervals[n + 1].clone(),
                 side: cert.sides[n],
@@ -74,7 +108,7 @@ impl ShadowCircuit {
     }
 
     pub fn z0<F: PrimeField>(&self) -> Vec<F> {
-        let v = PnfVar::<F>::constant(B32, self.p);
+        let v = PnfVar::<F>::constant(self.fmt, self.p);
         let mut z = vec![F::ZERO];
         z.extend([v.s, v.eb, v.m, v.z, v.inf, v.nan].map(|e| e.val));
         z.push(fb(&self.cur.a));
@@ -85,7 +119,7 @@ impl ShadowCircuit {
 
     /// Estado esperado depois do fold, para conferência fora do circuito.
     pub fn expected_next<F: PrimeField>(&self, counter: u64, p_next: Pnf, verdict: u64) -> Vec<F> {
-        let v = PnfVar::<F>::constant(B32, p_next);
+        let v = PnfVar::<F>::constant(self.fmt, p_next);
         let mut z = vec![F::from(counter)];
         z.extend([v.s, v.eb, v.m, v.z, v.inf, v.nan].map(|e| e.val));
         z.push(fb(&self.next.a));
@@ -106,30 +140,35 @@ impl<F: PrimeField> StepCircuit<F> for ShadowCircuit {
         z: &[AllocatedNum<F>],
     ) -> Result<Vec<AllocatedNum<F>>, SynthesisError> {
         let _w = WitnessOnly::enter(cs.is_witness_generator());
+        let fmt = self.fmt;
         let k = self.map.k;
-        assert_eq!(k, K);
-        let x = PnfVar::from_nums(&z[1..1 + ARITY], B32, self.p);
+        assert_eq!(k, grid_bits_for(fmt));
+        let label = if fmt == B32 { "pnf32" } else { "pnf64" };
+        let x = PnfVar::from_nums(&z[1..1 + ARITY], fmt, self.p);
         let a = Expr::from_num(&z[1 + ARITY], fb(&self.cur.a));
         let b = Expr::from_num(&z[2 + ARITY], fb(&self.cur.b));
 
         // (1) passo IEEE bit-exato
         let y = {
-            let _g = Category::enter("pnf32");
-            let r = PnfVar::constant(B32, self.r);
-            logistic(cs, B32, &x, &r)
+            let _g = Category::enter(label);
+            let r = PnfVar::constant(fmt, self.r);
+            logistic(cs, fmt, &x, &r)
         };
         let dec = {
-            let _g = Category::enter("pnf32");
-            ge_pow2(cs, B32, &x, -1, None)
+            let _g = Category::enter(label);
+            ge_pow2(cs, fmt, &x, -1, None)
         };
 
         let _g = Category::enter("shadow");
-        // (2) p_n positivo, normal, na grade: P = m · 2^(eb + K − 149), eb ≥ 149 − K
+        // (2) p_n positivo, normal, na grade: P = m · 2^(eb + K − off), eb ≥ off − K,
+        // com off = (p−1) − emin (149 em binary32, 1074 em binary64). Para
+        // p_n < 1, t = eb − (off − K) ≤ K − p.
         for flag in [&x.s, &x.z, &x.inf, &x.nan] {
             assert_zero(cs, flag);
         }
-        let t = x.eb.add_int(-(149 - k as i128));
-        let tbits = range(cs, &t, 5);
+        let off = (fmt.p as i128 - 1) - fmt.emin() as i128;
+        let t = x.eb.add_int(-(off - k as i128));
+        let tbits = range(cs, &t, bitlen((k - fmt.p) as u128));
         let pow = pow2(cs, &tbits);
         let p_grid = product(cs, &x.m, &pow);
 
@@ -156,7 +195,11 @@ impl<F: PrimeField> StepCircuit<F> for ShadowCircuit {
         let hi = select(cs, &sigma, &fa, &fbv); // imagem que deve ficar ≥ B'
         let rn: F = fb(&self.map.rn);
         let tscale = f_pow2::<F>(self.map.rs + k);
-        let wide = 2 * k + 26;
+        // Os dois lados ficam abaixo de 2^(2K+p+1) se rn < 2^p e rs ≤ p
+        // (r em [1, 4) no formato); em binary32 isto é o 2K+26 original.
+        assert!(self.map.rn.bits() <= fmt.p as u64 && self.map.rs <= fmt.p, "r fora de [1, 4)");
+        let wide = 2 * k + fmt.p + 2;
+        assert!(wide as i128 <= FIELD_SAFE_BITS, "aninhamento estoura o corpo");
         range(cs, &a2.scale(tscale).sub(&lo.scale(rn)), wide);
         range(cs, &hi.scale(rn).sub(&b2.scale(tscale)), wide);
 

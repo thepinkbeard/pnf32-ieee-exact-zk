@@ -82,6 +82,10 @@ enum Cmd {
         /// Sementes conferidas também no circuito (CheckCS) até o maior horizonte.
         #[arg(long, default_value_t = 20)]
         circuit_check: usize,
+        /// Usa as sementes do ataque (x0 = fl32(0,1) e mais `seeds` do xorshift
+        /// de rounding-steering-attack) em vez do splitmix.
+        #[arg(long)]
+        attack_seeds: bool,
         #[arg(long)]
         output: PathBuf,
     },
@@ -113,8 +117,9 @@ fn main() -> Result<()> {
             r,
             horizons,
             circuit_check,
+            attack_seeds,
             output,
-        } => coverage(seeds, seed, r, horizons, circuit_check, output),
+        } => coverage(seeds, seed, r, horizons, circuit_check, attack_seeds, output),
     }
 }
 
@@ -361,6 +366,29 @@ fn seeds(n: usize, seed: u64) -> Vec<f32> {
     out
 }
 
+/// Mesmo gerador de sementes do ataque (rounding-steering-attack/src/main.rs):
+/// semente 0 é fl32(0,1); as demais, uniformes em (0,01; 0,99). São binary32
+/// >= 2^-7, logo exatos na grade 2^-32 da CBD (raio inicial zero).
+fn attack_seeds(n: usize) -> Vec<f32> {
+    (0..=n)
+        .map(|seed| {
+            if seed == 0 {
+                return 0.1f32;
+            }
+            let mut s = 0xA5A5_5A5A_1234_5678u64 ^ (seed as u64).wrapping_mul(0x9E37_79B9_7F4A_7C15);
+            let mut next = || {
+                s ^= s >> 12;
+                s ^= s << 25;
+                s ^= s >> 27;
+                s.wrapping_mul(0x2545_F491_4F6C_DD1D)
+            };
+            next();
+            let u = (next() >> 11) as f64 / (1u64 << 53) as f64;
+            (0.01 + 0.98 * u) as f32
+        })
+        .collect()
+}
+
 /// Decisão exata `x_n >= 1/2` pelo intervalo dirigido; `None` se ele cruza.
 fn exact_decisions(x0: f32, rq: &BigRational, n: usize) -> Vec<Option<bool>> {
     let half = BigRational::new(1.into(), 2.into());
@@ -506,6 +534,7 @@ fn coverage(
     r: f32,
     horizons: Vec<usize>,
     circuit_check: usize,
+    use_attack_seeds: bool,
     output: PathBuf,
 ) -> Result<()> {
     if horizons.is_empty() || horizons.contains(&0) {
@@ -515,7 +544,8 @@ fn coverage(
     let csv_path = output.with_extension("csv");
     new_file(&csv_path)?;
     let t = Instant::now();
-    let xs = seeds(n, seed);
+    let xs = if use_attack_seeds { attack_seeds(n) } else { seeds(n, seed) };
+    let n = xs.len();
     let hmax = *horizons.iter().max().unwrap();
     let mut rows = Vec::new();
     let mut csv = String::from(
@@ -536,7 +566,11 @@ fn coverage(
     let doc = json!({
         "workload": "logistic-map", "r_f32": r, "r_f32_exact": format!("{}/{}", fl.0, fl.1),
         "threshold": 0.5, "seeds": n, "seed": seed,
-        "seed_rule": "x0 = u/2^24, u = (splitmix64 >> 40), u != 0",
+        "seed_rule": if use_attack_seeds {
+            "rounding-steering-attack: fl32(0.1) + xorshift, fl32(0.01 + 0.98 u)"
+        } else {
+            "x0 = u/2^24, u = (splitmix64 >> 40), u != 0"
+        },
         "horizons": horizons, "radius_bound": "LocalTaylor",
         "exact_reference": "numeric_reference::directed_dynamic_trajectory, 4096 bits",
         "circuit_checked_seeds_per_k_and_mode": circuit_check.min(n),

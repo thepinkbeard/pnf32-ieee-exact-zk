@@ -46,6 +46,9 @@ struct Cli {
 enum Cmd {
     /// Contagem de constraints por operação e por passo, com breakdown.
     Constraints {
+        /// `b32` (PNF32) ou `b64` (PNF64).
+        #[arg(long, default_value = "b32")]
+        format: String,
         #[arg(long)]
         output: PathBuf,
     },
@@ -94,7 +97,7 @@ enum Cmd {
 
 fn main() -> Result<()> {
     match Cli::parse().cmd {
-        Cmd::Constraints { output } => constraints(output),
+        Cmd::Constraints { format, output } => constraints(&format, output),
         Cmd::Nova {
             steps,
             steps_per_fold,
@@ -157,75 +160,86 @@ fn step_constraints(c: &LogisticCircuit) -> serde_json::Value {
     })
 }
 
-fn constraints(output: PathBuf) -> Result<()> {
+fn constraints(format: &str, output: PathBuf) -> Result<()> {
+    let b64 = match format {
+        "b32" => false,
+        "b64" => true,
+        _ => anyhow::bail!("formato: b32 ou b64"),
+    };
     new_file(&output)?;
-    let (a, b) = (Pnf::from_f32(0.3), Pnf::from_f32(0.7));
-    let r = Pnf::from_f32(3.7);
+    let fmt = if b64 { Format::BINARY64 } else { B32 };
+    let pf = |v: f32| if b64 { Pnf::from_f64(v as f64) } else { Pnf::from_f32(v) };
+    let (a, b) = (pf(0.3), pf(0.7));
+    let r = pf(3.7);
     let mut table = BTreeMap::new();
     let var2 = |cs: &mut CheckCS<Fq>| {
         (
-            PnfVar::alloc_unchecked(cs, B32, a),
-            PnfVar::alloc_unchecked(cs, B32, b),
+            PnfVar::alloc_unchecked(cs, fmt, a),
+            PnfVar::alloc_unchecked(cs, fmt, b),
         )
     };
     table.insert(
         "add (var,var)",
         measure(|cs| {
             let (x, y) = var2(cs);
-            ops::add(cs, B32, &x, &y, None);
+            ops::add(cs, fmt, &x, &y, None);
         }),
     );
     table.insert(
         "sub (var,var)",
         measure(|cs| {
             let (x, y) = var2(cs);
-            ops::sub(cs, B32, &x, &y, None);
+            ops::sub(cs, fmt, &x, &y, None);
         }),
     );
     table.insert(
         "mul (var,var)",
         measure(|cs| {
             let (x, y) = var2(cs);
-            ops::mul(cs, B32, &x, &y, None);
+            ops::mul(cs, fmt, &x, &y, None);
         }),
     );
     table.insert(
         "1 - x (const,var)",
         measure(|cs| {
-            let x = PnfVar::alloc_unchecked(cs, B32, a);
-            let one = PnfVar::constant(B32, reference::one(B32));
-            ops::sub(cs, B32, &one, &x, None);
+            let x = PnfVar::alloc_unchecked(cs, fmt, a);
+            let one = PnfVar::constant(fmt, reference::one(fmt));
+            ops::sub(cs, fmt, &one, &x, None);
         }),
     );
     table.insert(
         "x * r (var,const)",
         measure(|cs| {
-            let x = PnfVar::alloc_unchecked(cs, B32, a);
-            ops::mul(cs, B32, &x, &PnfVar::constant(B32, r), None);
+            let x = PnfVar::alloc_unchecked(cs, fmt, a);
+            ops::mul(cs, fmt, &x, &PnfVar::constant(fmt, r), None);
         }),
     );
     table.insert(
         "decision x >= 0.5",
         measure(|cs| {
-            let x = PnfVar::alloc_unchecked(cs, B32, a);
-            ops::ge_pow2(cs, B32, &x, -1, None);
+            let x = PnfVar::alloc_unchecked(cs, fmt, a);
+            ops::ge_pow2(cs, fmt, &x, -1, None);
         }),
     );
     table.insert(
         "validate (T2 ablation)",
         measure(|cs| {
-            let x = PnfVar::alloc_unchecked(cs, B32, a);
-            x.validate(cs, B32);
+            let x = PnfVar::alloc_unchecked(cs, fmt, a);
+            x.validate(cs, fmt);
         }),
     );
     table.insert(
         "logistic only (1-x, x*c, p*r)",
         measure(|cs| {
-            let x = PnfVar::alloc_unchecked(cs, B32, Pnf::from_f32(0.1));
-            logistic(cs, B32, &x, &PnfVar::constant(B32, r));
+            let x = PnfVar::alloc_unchecked(cs, fmt, pf(0.1));
+            logistic(cs, fmt, &x, &PnfVar::constant(fmt, r));
         }),
     );
-    let base = LogisticCircuit::new(3.7, 0.1);
+    let base = if b64 {
+        LogisticCircuit::new_f64(3.7, 0.1)
+    } else {
+        LogisticCircuit::new(3.7, 0.1)
+    };
     table.insert(
         "STEP logistic + decision (T2 on, r const)",
         step_constraints(&base),
@@ -247,11 +261,12 @@ fn constraints(output: PathBuf) -> Result<()> {
     for (k, v) in &table {
         println!("{:<45} {:>6}   {}", k, v["constraints"], v["breakdown"]);
     }
-    let w = ops::Widths::of(B32);
+    let w = ops::Widths::of(fmt);
     fs::write(
         &output,
         serde_json::to_vec_pretty(&json!({
-            "format": "binary32", "rounding": "RNE", "nan": "canonical 0x7FC00000",
+            "format": if b64 { "binary64" } else { "binary32" }, "rounding": "RNE",
+            "nan": if b64 { "canonical 0x7FF8000000000000" } else { "canonical 0x7FC00000" },
             "field": "Pallas scalar", "widths": format!("{w:?}"), "measurements": table,
         }))?,
     )?;

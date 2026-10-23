@@ -26,6 +26,7 @@ pub struct Format {
 
 impl Format {
     pub const BINARY32: Format = Format { ebits: 8, p: 24 };
+    pub const BINARY64: Format = Format { ebits: 11, p: 53 };
     pub const BINARY16: Format = Format { ebits: 5, p: 11 };
 
     pub const fn bias(self) -> i32 {
@@ -188,6 +189,12 @@ impl Pnf {
     }
     pub fn to_f32(self) -> f32 {
         f32::from_bits(self.to_bits(Format::BINARY32) as u32)
+    }
+    pub fn from_f64(value: f64) -> Self {
+        Self::from_bits(Format::BINARY64, value.to_bits())
+    }
+    pub fn to_f64(self) -> f64 {
+        f64::from_bits(self.to_bits(Format::BINARY64))
     }
 
     /// Inteiro com sinal `N` tal que `valor = N * 2^qmin` (só finitos).
@@ -512,6 +519,110 @@ mod tests {
                 native = (native * (1.0 - native)) * r;
                 ours = logistic_step(f, ours, rp);
                 assert_eq!(ours.to_f32().to_bits(), native.to_bits());
+            }
+        }
+    }
+
+    // --- binary64 ----------------------------------------------------------
+
+    fn same64(a: f64, b: f64) -> bool {
+        (a.is_nan() && b.is_nan()) || a.to_bits() == b.to_bits()
+    }
+
+    fn check_pair64(a: f64, b: f64) {
+        let f = Format::BINARY64;
+        let (pa, pb) = (Pnf::from_f64(a), Pnf::from_f64(b));
+        assert!(pa.is_valid(f) && pb.is_valid(f));
+        for (op, ours, native) in [
+            ("add", add(f, pa, pb).to_f64(), a + b),
+            ("sub", sub(f, pa, pb).to_f64(), a - b),
+            ("mul", mul(f, pa, pb).to_f64(), a * b),
+        ] {
+            assert!(same64(ours, native), "{op} {a:e} {b:e}: pnf {ours:e} native {native:e}");
+        }
+    }
+
+    #[test]
+    fn binary64_constants() {
+        let f = Format::BINARY64;
+        assert_eq!((f.emin(), f.emax(), f.qmin(), f.width()), (-1022, 1023, -1074, 64));
+        assert_eq!(Pnf::nan(f).to_bits(f), 0x7FF8_0000_0000_0000);
+        let mut rng = Rng(11);
+        for _ in 0..1_000_000 {
+            let bits = rng.next_u64();
+            let v = Pnf::from_bits(f, bits);
+            assert!(v.is_valid(f), "{bits:#x}");
+            if !v.is_nan() {
+                assert_eq!(v.to_bits(f), bits);
+            }
+        }
+    }
+
+    #[test]
+    fn oracle_matches_native_binary64() {
+        let mut rng = Rng(0x64_5EED);
+        for _ in 0..500_000 {
+            check_pair64(f64::from_bits(rng.next_u64()), f64::from_bits(rng.next_u64()));
+        }
+        // Mesma binade e vizinhança: cancelamento e near path.
+        for _ in 0..500_000 {
+            let a = rng.next_u64();
+            let b = (a & 0xFFF0_0000_0000_0000) ^ (rng.next_u64() & 0x800F_FFFF_FFFF_FFFF);
+            check_pair64(f64::from_bits(a), f64::from_bits(b));
+        }
+        // Valores em [0, 1], o domínio do mapa logístico.
+        for _ in 0..500_000 {
+            let a = (rng.next_u64() >> 11) as f64 / (1u64 << 53) as f64;
+            let b = (rng.next_u64() >> 11) as f64 / (1u64 << 53) as f64;
+            check_pair64(a, b);
+            check_pair64(1.0, a);
+            check_pair64(a, 3.9);
+        }
+    }
+
+    #[test]
+    fn hard_cases_binary64() {
+        let hard = [
+            0.0_f64,
+            -0.0,
+            1.0,
+            0.5,
+            f64::MIN_POSITIVE,
+            f64::MAX,
+            f64::INFINITY,
+            f64::NEG_INFINITY,
+            f64::NAN,
+            f64::from_bits(1),
+            f64::from_bits(0x000F_FFFF_FFFF_FFFF),
+            f64::from_bits(0x0010_0000_0000_0001),
+            1.0 - f64::EPSILON / 2.0,
+            1.0 + f64::EPSILON,
+            1.0 / 3.0,
+            2.0 / 3.0,
+            3.9,
+            0.1,
+            -f64::MIN_POSITIVE,
+            1e-300,
+            1e300,
+        ];
+        for a in hard {
+            for b in hard {
+                check_pair64(a, b);
+            }
+        }
+    }
+
+    #[test]
+    fn logistic_trajectory_matches_native_binary64() {
+        let f = Format::BINARY64;
+        for r in [3.5_f64, 3.7, 3.9, 4.0] {
+            let mut native = 0.1_f64;
+            let mut ours = Pnf::from_f64(0.1);
+            let rp = Pnf::from_f64(r);
+            for _ in 0..1000 {
+                native = (native * (1.0 - native)) * r;
+                ours = logistic_step(f, ours, rp);
+                assert_eq!(ours.to_f64().to_bits(), native.to_bits());
             }
         }
     }
