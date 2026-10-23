@@ -1,0 +1,349 @@
+{
+  "arity": 6,
+  "field": "Pallas scalar",
+  "profiles": [
+    {
+      "K": 28,
+      "breakdown": {
+        "dyadic": 64,
+        "io": 4,
+        "range": 375,
+        "shadow": 7
+      },
+      "constraints_per_fold": 450,
+      "eps_grid_bits": 10,
+      "p": 20,
+      "s": 22,
+      "width_bits": {
+        "distance": 30,
+        "interval": 29,
+        "nesting": 81
+      },
+      "widths": "full"
+    },
+    {
+      "K": 28,
+      "breakdown": {
+        "dyadic": 64,
+        "io": 4,
+        "range": 234,
+        "shadow": 7
+      },
+      "constraints_per_fold": 309,
+      "eps_grid_bits": 10,
+      "p": 20,
+      "s": 22,
+      "width_bits": {
+        "distance": 12,
+        "interval": 12,
+        "nesting": 52
+      },
+      "widths": "tight"
+    },
+    {
+      "K": 32,
+      "breakdown": {
+        "dyadic": 72,
+        "io": 4,
+        "range": 419,
+        "shadow": 7
+      },
+      "constraints_per_fold": 502,
+      "eps_grid_bits": 12,
+      "p": 24,
+      "s": 22,
+      "width_bits": {
+        "distance": 34,
+        "interval": 33,
+        "nesting": 89
+      },
+      "widths": "full"
+    },
+    {
+      "K": 32,
+      "breakdown": {
+        "dyadic": 72,
+        "io": 4,
+        "range": 260,
+        "shadow": 7
+      },
+      "constraints_per_fold": 343,
+      "eps_grid_bits": 12,
+      "p": 24,
+      "s": 22,
+      "width_bits": {
+        "distance": 14,
+        "interval": 14,
+        "nesting": 56
+      },
+      "widths": "tight"
+    },
+    {
+      "K": 40,
+      "breakdown": {
+        "dyadic": 88,
+        "io": 4,
+        "range": 507,
+        "shadow": 7
+      },
+      "constraints_per_fold": 606,
+      "eps_grid_bits": 10,
+      "p": 32,
+      "s": 22,
+      "width_bits": {
+        "distance": 42,
+        "interval": 41,
+        "nesting": 105
+      },
+      "widths": "full"
+    },
+    {
+      "K": 40,
+      "breakdown": {
+        "dyadic": 88,
+        "io": 4,
+        "range": 294,
+        "shadow": 7
+      },
+      "constraints_per_fold": 393,
+      "eps_grid_bits": 10,
+      "p": 32,
+      "s": 22,
+      "width_bits": {
+        "distance": 12,
+        "interval": 12,
+        "nesting": 64
+      },
+      "widths": "tight"
+    },
+    {
+      "K": 56,
+      "breakdown": {
+        "dyadic": 120,
+        "io": 4,
+        "range": 683,
+        "shadow": 7
+      },
+      "constraints_per_fold": 814,
+      "eps_grid_bits": 11,
+      "p": 48,
+      "s": 22,
+      "width_bits": {
+        "distance": 58,
+        "interval": 57,
+        "nesting": 137
+      },
+      "widths": "full"
+    },
+    {
+      "K": 56,
+      "breakdown": {
+        "dyadic": 120,
+        "io": 4,
+        "range": 377,
+        "shadow": 7
+      },
+      "constraints_per_fold": 508,
+      "eps_grid_bits": 11,
+      "p": 48,
+      "s": 22,
+      "width_bits": {
+        "distance": 13,
+        "interval": 13,
+        "nesting": 80
+      },
+      "widths": "tight"
+    },
+    {
+      "K": 72,
+      "breakdown": {
+        "dyadic": 152,
+        "io": 4,
+        "range": 859,
+        "shadow": 7
+      },
+      "constraints_per_fold": 1022,
+      "eps_grid_bits": 10,
+      "p": 64,
+      "s": 22,
+      "width_bits": {
+        "distance": 74,
+        "interval": 73,
+        "nesting": 169
+      },
+      "widths": "full"
+    },
+    {
+      "K": 72,
+      "breakdown": {
+        "dyadic": 152,
+        "io": 4,
+        "range": 454,
+        "shadow": 7
+      },
+      "constraints_per_fold": 617,
+      "eps_grid_bits": 10,
+      "p": 64,
+      "s": 22,
+      "width_bits": {
+        "distance": 12,
+        "interval": 12,
+        "nesting": 96
+      },
+      "widths": "tight"
+    },
+    {
+      "K": 104,
+      "breakdown": {
+        "dyadic": 216,
+        "io": 4,
+        "range": 1211,
+        "shadow": 7
+      },
+      "constraints_per_fold": 1438,
+      "eps_grid_bits": 11,
+      "p": 96,
+      "s": 22,
+      "width_bits": {
+        "distance": 106,
+        "interval": 105,
+        "nesting": 233
+      },
+      "widths": "full"
+    },
+    {
+      "K": 104,
+      "breakdown": {
+        "dyadic": 216,
+        "io": 4,
+        "range": 617,
+        "shadow": 7
+      },
+      "constraints_per_fold": 844,
+      "eps_grid_bits": 11,
+      "p": 96,
+      "s": 22,
+      "width_bits": {
+        "distance": 13,
+        "interval": 13,
+        "nesting": 128
+      },
+      "widths": "tight"
+    },
+    {
+      "K": 113,
+      "breakdown": {
+        "dyadic": 244,
+        "io": 4,
+        "range": 1310,
+        "shadow": 7
+      },
+      "constraints_per_fold": 1565,
+      "eps_grid_bits": 6,
+      "p": 110,
+      "s": 22,
+      "width_bits": {
+        "distance": 115,
+        "interval": 114,
+        "nesting": 251
+      },
+      "widths": "full"
+    },
+    {
+      "K": 113,
+      "breakdown": {
+        "dyadic": 244,
+        "io": 4,
+        "range": 647,
+        "shadow": 7
+      },
+      "constraints_per_fold": 902,
+      "eps_grid_bits": 6,
+      "p": 110,
+      "s": 22,
+      "width_bits": {
+        "distance": 8,
+        "interval": 8,
+        "nesting": 137
+      },
+      "widths": "tight"
+    },
+    {
+      "K": 48,
+      "breakdown": {
+        "dyadic": 72,
+        "io": 4,
+        "range": 595,
+        "shadow": 7
+      },
+      "constraints_per_fold": 678,
+      "eps_grid_bits": 28,
+      "p": 24,
+      "s": 22,
+      "width_bits": {
+        "distance": 50,
+        "interval": 49,
+        "nesting": 121
+      },
+      "widths": "full"
+    },
+    {
+      "K": 48,
+      "breakdown": {
+        "dyadic": 72,
+        "io": 4,
+        "range": 388,
+        "shadow": 7
+      },
+      "constraints_per_fold": 471,
+      "eps_grid_bits": 28,
+      "p": 24,
+      "s": 22,
+      "width_bits": {
+        "distance": 30,
+        "interval": 30,
+        "nesting": 72
+      },
+      "widths": "tight"
+    },
+    {
+      "K": 48,
+      "breakdown": {
+        "dyadic": 88,
+        "io": 4,
+        "range": 595,
+        "shadow": 7
+      },
+      "constraints_per_fold": 694,
+      "eps_grid_bits": 18,
+      "p": 32,
+      "s": 22,
+      "width_bits": {
+        "distance": 50,
+        "interval": 49,
+        "nesting": 121
+      },
+      "widths": "full"
+    },
+    {
+      "K": 48,
+      "breakdown": {
+        "dyadic": 88,
+        "io": 4,
+        "range": 358,
+        "shadow": 7
+      },
+      "constraints_per_fold": 457,
+      "eps_grid_bits": 18,
+      "p": 32,
+      "s": 22,
+      "width_bits": {
+        "distance": 20,
+        "interval": 20,
+        "nesting": 72
+      },
+      "widths": "tight"
+    }
+  ],
+  "workload": "logistic-map, diádico fundido + certificado HYG (fold 30 de 64, r=3,9, x0=0,1)"
+}

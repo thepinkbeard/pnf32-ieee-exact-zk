@@ -15,6 +15,7 @@ num-bigint.workspace = true
 num-traits.workspace = true
 serde_json.workspace = true
 pnf-circuit = { path = "../pnf-circuit" }
+shadow-proof = { path = "../shadow-proof" }
 
 [[bin]]
 name = "dyadic-bench"

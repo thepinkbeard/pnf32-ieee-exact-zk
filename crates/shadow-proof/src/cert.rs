@@ -180,12 +180,18 @@ fn preimage_guess(map: &Map, y: &BigInt, right: bool) -> BigInt {
 /// Constrói o certificado para trás a partir de `I_N = {p_N}` (HYG §3).
 /// `orbit[n]` é a pseudo-órbita (valores exatos do formato).
 pub fn build(map: &Map, orbit: &[f64]) -> Result<Certificate, Failure> {
-    let n = orbit.len() - 1;
     let grid: Vec<BigInt> = orbit
         .iter()
         .enumerate()
         .map(|(i, &p)| map.to_grid(p).ok_or(Failure::NotRepresentable(i)))
         .collect::<Result<_, _>>()?;
+    build_grid(map, &grid)
+}
+
+/// Como [`build`], com a pseudo-órbita já na grade (`grid[n] = p_n·2^K`), para
+/// formatos que não cabem em f64 (ponto fixo diádico com p > 53).
+pub fn build_grid(map: &Map, grid: &[BigInt]) -> Result<Certificate, Failure> {
+    let n = grid.len() - 1;
     let half = map.half();
     let one = map.one();
     let mut intervals = vec![Interval { a: grid[n].clone(), b: grid[n].clone() }; n + 1];
@@ -236,14 +242,21 @@ pub fn build(map: &Map, orbit: &[f64]) -> Result<Certificate, Failure> {
 
 /// Checagem independente das três condições (o que o circuito impõe).
 pub fn check(map: &Map, orbit: &[f64], cert: &Certificate, eps: &BigInt) -> Result<(), String> {
+    let grid: Vec<BigInt> =
+        orbit.iter().map(|&p| map.to_grid(p).ok_or("p fora da grade")).collect::<Result<_, _>>()?;
+    check_grid(map, &grid, cert, eps)
+}
+
+/// Como [`check`], com a pseudo-órbita já na grade.
+pub fn check_grid(map: &Map, grid: &[BigInt], cert: &Certificate, eps: &BigInt) -> Result<(), String> {
     let half = map.half();
     let one = map.one();
-    let n = orbit.len() - 1;
+    let n = grid.len() - 1;
     if cert.intervals.len() != n + 1 {
         return Err("tamanho".into());
     }
     for (m, i) in cert.intervals.iter().enumerate() {
-        let p = map.to_grid(orbit[m]).ok_or("p fora da grade")?;
+        let p = grid[m].clone();
         if i.a > i.b || i.a.is_negative() || i.b > one {
             return Err(format!("intervalo inválido em {m}"));
         }

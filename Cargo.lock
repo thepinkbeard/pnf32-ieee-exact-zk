@@ -386,6 +386,7 @@ dependencies = [
  "num-traits",
  "pnf-circuit",
  "serde_json",
+ "shadow-proof",
 ]
 
 [[package]]

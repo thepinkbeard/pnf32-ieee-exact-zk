@@ -24,6 +24,8 @@
 //! `bit_{p−1}` e `bit_p` não podem ser 1 ao mesmo tempo (decisão booleana).
 //! O provador não tem nenhum grau de liberdade.
 
+pub mod shadow;
+
 use ff::PrimeField;
 use nova_snark::{
     frontend::{num::AllocatedNum, ConstraintSystem, SynthesisError},

@@ -28,6 +28,7 @@ Ponto de retomada para pessoas e agentes automatizados. Segue o mesmo modelo de
 | [0011](0011-prova-de-sombreamento.md) | 2026-10-18 | concluído (protótipo) | G2: PNF32 + sombreamento HYG, 1.035 constraints/fold, 100% das sementes certificadas até 65.536 passos; sombreamento sozinho não barra o ataque |
 | [0012](0012-pnf64-e-wad.md) | 2026-10-22 | concluído | PNF64 (677/passo, bit-exata ao f64) e baseline WAD (431/passo); G2 em binary64 (1.885/fold, 1.001/1.001 certificadas até 4.096) |
 | [0013](0013-ponto-fixo-diadico-fundido.md) | 2026-10-23 | concluído | Ponto fixo diádico fundido: 91/155/219/247 constraints para p=32/64/96/110 (2p+s+5); unicidade exaustiva nos perfis mini; 3,2 M decisões iguais à referência; horizonte segue `p·ln2/λ` |
+| [0014](0014-g2-diadico.md) | 2026-10-23 | concluído | G2 sobre o diádico: p=32 + certificado HYG = 393 constraints/fold (PNF32 + G2: 1.035); 202.202 certificados sem breakdown até N=65.536; ε ≤ 7,3·10⁻⁶ (100× abaixo do ruído do oráculo) |
 
 ## Modelo obrigatório
 

@@ -1,0 +1,19 @@
+{
+  "K": 40,
+  "compressed_proof_bytes": 10752,
+  "compressed_verify_seconds": 0.030017791,
+  "compression_seconds": 1.45571,
+  "compression_setup_seconds": 0.06740125,
+  "eps": 1.6552803572267294e-10,
+  "note": "tempos de uma rodada só (smoke); 1 passo por fold",
+  "p": 32,
+  "primary_constraints": 11983,
+  "prover_seconds": 0.695515958,
+  "r": 3.9000000953674316,
+  "s": 22,
+  "secondary_constraints": 10349,
+  "setup_seconds": 1.473602292,
+  "steps": 16,
+  "widths": "full",
+  "x0": 0.10000000149011612
+}

@@ -1,0 +1,28 @@
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test conversions_are_exact ... ok
+test test_cs_agrees ... ok
+test extremes ... ok
+test tampered_witnesses_are_rejected ... ok
+test chained_folds_match_reference ... ok
+test mini_profiles_exhaustive_uniqueness ... ok
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.42s
+test map_matches_profile_r ... ok
+test test_cs_agrees ... ok
+test tampering_is_rejected ... ok
+test honest_folds_chain_in_both_widths ... ok
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.77s
+test cert::tests::grid_and_map_exact ... ok
+test cert::tests::certificate_checks_and_rejects_tampering ... ok
+test cert::tests::hyg_case_binary64_is_shadowed ... ok
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test test_cs_agrees ... ok
+test binary64_test_cs_agrees ... ok
+test tampering_is_rejected ... ok
+test binary64_tampering_is_rejected ... ok
+test honest_folds_chain_and_match_native ... ok
+test binary64_honest_folds_chain_and_match_native ... ok
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.35s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
